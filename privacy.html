@@ -130,6 +130,12 @@
   <p>Stash stores the clipboard content that the user chooses to keep, including history items, snippets, favorites, text, rich text, images, file references, folders, multiple-copy groups, and media metadata. Clipboard content is stored locally on the user's device by default.</p>
   <p>On macOS, the optional automatic clipboard saving switch is a per-device setting. When it is off, newly copied items are ignored for automatic history saving on that Mac. Explicit actions such as saving a snippet or choosing a copy/save action remain user-controlled.</p>
 
+  <h2>Permissions and device access</h2>
+  <p>On iOS, Stash reads the general pasteboard only when the user opens Stash or uses a save or paste workflow. iOS may show a paste permission prompt; Stash does not monitor every copy action in the background.</p>
+  <p>On macOS, automatic paste uses the Accessibility permission to send Command-V to the previously active app. This permission is used for that paste action and does not send clipboard content to a Stash server.</p>
+  <p>When Touch ID unlock is enabled on macOS, its local unlock key is stored in this Mac's Keychain and is not synchronized. Sensitive snippet decryption still depends on the local authentication flow.</p>
+
+
   <h2>Three storage categories</h2>
   <div class="grid">
     <article class="card"><span class="eyebrow">01 / Body</span><h3>Original content stored in Stash</h3><p>Some text, rich text, images, videos, audio, and imported file content are retained in local app storage according to the platform's size and type rules. Eligible payloads may also sync through iCloud.</p></article>
@@ -142,8 +148,8 @@
   <h2>Platform-specific behavior</h2>
   <div class="grid">
     <article class="card"><span class="eyebrow">macOS</span><h3>File references stay tied to the source Mac</h3><p>Image files in supported formats up to 100 MB are stored as image data and may sync. Most non-image file histories, including PDF, SVG, archives, fonts, audio, video, Office/iWork documents, folders, packages, and code/text files, keep the original-location metadata and local access data instead of copying the file body into Stash. Rich text over 10 MB is kept locally while its plain text can remain syncable.</p></article>
-    <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>Accessible file bodies can be kept locally</h3><p>When iOS provides an accessible file URL or file representation, Stash can copy PDF, SVG, archives, fonts, audio, video, Office/iWork/OpenDocument documents, EPUB, code/text files, and other files into local Stash storage. These local file bodies are used for pasting on that device, but are not uploaded to other devices. Videos and audio remain local-only.</p></article>
-    <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>Folders and multiple files</h3><p>Folder references are kept locally with access information rather than copied folder contents. When a folder is pasted, Stash may create a temporary ZIP. Multiple copied files are stored locally when their file representations are accessible and restored as multiple file items when pasted.</p></article>
+    <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>Accessible file bodies can be kept locally</h3><p>When iOS provides an accessible file URL or file representation, Stash can copy PDF, SVG, archives, fonts, audio, video, Office/iWork/OpenDocument documents, EPUB, code/text files, and other files into local Stash storage. These local file bodies are used for pasting on that device, but are not uploaded to other devices. Videos and audio remain local-only.</p><p>Video saves require confirmation. The item can appear while the local copy is being prepared and then changes to ready or failed. Deleting the Stash video copy does not affect the original video.</p></article>
+    <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>Folders and multiple files</h3><p>Folder references are kept locally with access information rather than copied folder contents. When a folder is pasted, Stash may create a temporary ZIP. Multiple copied files are stored locally when their file representations are accessible and restored as multiple file items when pasted.</p><p>For folders, use the folder picker or the share sheet when possible; copying a folder in Files and saving it from the clipboard may not provide a reliable folder name or access reference on iOS.</p></article>
     <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>File copy and text copy</h3><p>Text-readable files may offer two actions: copy as a file for Files and other file-capable apps, or copy as text for Notes and text fields. Pasting the text form into a file manager may create a file such as <code>text.txt</code> instead of inserting text inline.</p></article>
   </div>
 
@@ -151,6 +157,11 @@
   <p>If iCloud sync is enabled, eligible data is stored in the user's private CloudKit database associated with their Apple Account. Stash uses the user's private iCloud account and does not send clipboard content to an independent Stash server.</p>
   <p>File and folder bodies that are classified as local references or local-only bodies are not uploaded. Another device may show a metadata item, but the original local file may not be available there. Device-only unlock information and local security-scoped access are not synchronized.</p>
   <p>Sync settings are controlled per device. Turning off macOS automatic clipboard saving affects only automatic saves on that Mac; it does not turn off iCloud sync or delete existing synchronized items.</p>
+
+
+  <h2>Temporary exports and file naming</h2>
+  <p>Folder ZIP files generated for a pasteboard export are temporary. Stash keeps them for up to 10 minutes and removes expired exports; the original folder is not changed.</p>
+  <p>On iOS, files with the <code>.alac</code> extension are treated as Apple Lossless audio and are shown and pasted with a <code>.m4a</code> name for compatibility. Stash does not re-encode the audio data.</p>
 
   <h2>Sensitive Snippets</h2>
   <p>Sensitive snippets are encrypted before being stored and protected by the app's authentication flow. They are hidden from ordinary lists and preview cards to reduce accidental exposure. This feature is not a replacement for a dedicated password manager.</p>
@@ -182,6 +193,12 @@
     <p>Stashは、ユーザーが保存することを選択したクリップボード履歴、スニペット、お気に入り、テキスト、リッチテキスト、画像、ファイル参照、フォルダ、複数コピー、メディアのメタデータなどを扱います。クリップボードの内容は、標準ではユーザーの端末にローカル保存されます。</p>
     <p>macOSでは、自動保存スイッチは端末ごとの設定です。オフにすると、そのMacで新しくコピーした項目は自動的な履歴保存の対象になりません。スニペット保存など、ユーザーが明示的に行う操作は引き続き利用できます。</p>
 
+    <h2>権限と端末アクセス</h2>
+    <p>iOSでは、StashはユーザーがStashを開いた時、または保存・ペーストの操作を行う時に一般ペーストボードを読み取ります。iOSでペースト許可が表示される場合があります。Stashがバックグラウンドで全てのコピー操作を監視することはありません。</p>
+    <p>macOSでは、自動ペーストのためにアクセシビリティ権限を使い、直前に使用していたアプリへCommand-Vを送信します。この権限はそのペースト操作に使用され、クリップボード内容をStashのサーバーへ送信するためには使われません。</p>
+    <p>macOSでTouch IDによる解除を有効にした場合、端末内の解除キーはそのMacのキーチェーンに保存され、同期されません。秘密スニペットの復号は引き続き端末内の認証フローに依存します。</p>
+
+
     <h2>3つの保存分類</h2>
     <div class="grid">
       <article class="card"><span class="eyebrow">01 / 本体</span><h3>Stash内に本体が保存されるもの</h3><p>一部のテキスト、リッチテキスト、画像、動画、音声、読み込んだファイル本体は、OSごとのサイズ・種類のルールに従ってアプリ内に保存されます。同期対象になるペイロードはiCloudにも同期されます。</p></article>
@@ -194,8 +211,8 @@
     <h2>OSごとの違い</h2>
     <div class="grid">
       <article class="card"><span class="eyebrow">macOS</span><h3>ファイル参照はコピー元Macに紐づきます</h3><p>対応形式で100MB以下の画像は画像データとして保存され、同期対象になる場合があります。PDF、SVG、アーカイブ、フォント、音声、動画、Office/iWork書類、フォルダ、パッケージ、コード・テキストファイルなど、多くのファイル履歴は本体をStashへコピーせず、元の場所へのメタデータとローカルアクセス情報を保持します。10MBを超えるリッチテキストは端末内に保持し、プレーンテキストは同期できる場合があります。</p></article>
-      <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>アクセスできるファイル本体を端末内に保持できます</h3><p>iOSがアクセス可能なファイルURLまたはファイル表現を提供する場合、PDF、SVG、アーカイブ、フォント、音声、動画、Office/iWork/OpenDocument書類、EPUB、コード・テキストファイルなどをStashの端末内ストレージへコピーできます。これらはその端末でのペーストに使われますが、他端末へはアップロードされません。動画と音声は端末内のみです。</p></article>
-      <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>フォルダと複数ファイル</h3><p>フォルダは内容をコピーせず、アクセス情報を持つローカル参照として保持します。フォルダをペーストすると、一時ZIPを生成する場合があります。複数ファイルはアクセス可能なファイル表現がある場合に端末内へ保存され、ペースト時に複数のファイル項目として復元されます。</p></article>
+      <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>アクセスできるファイル本体を端末内に保持できます</h3><p>iOSがアクセス可能なファイルURLまたはファイル表現を提供する場合、PDF、SVG、アーカイブ、フォント、音声、動画、Office/iWork/OpenDocument書類、EPUB、コード・テキストファイルなどをStashの端末内ストレージへコピーできます。これらはその端末でのペーストに使われますが、他端末へはアップロードされません。動画と音声は端末内のみです。</p><p>動画の保存には確認が必要です。ローカルコピーの準備中も項目が表示され、完了または失敗の状態に変わります。Stash内の動画コピーを削除しても、元の動画には影響しません。</p></article>
+      <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>フォルダと複数ファイル</h3><p>フォルダは内容をコピーせず、アクセス情報を持つローカル参照として保持します。フォルダをペーストすると、一時ZIPを生成する場合があります。複数ファイルはアクセス可能なファイル表現がある場合に端末内へ保存され、ペースト時に複数のファイル項目として復元されます。</p><p>フォルダは、できるだけフォルダ選択または共有シートから保存してください。Filesでフォルダをコピーしてクリップボードから保存すると、iOSではフォルダ名やアクセス参照を安定して取得できない場合があります。</p></article>
       <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>ファイルとしてコピー・テキストとしてコピー</h3><p>文字として読めるファイルには、Filesなどへ渡す「ファイルとしてコピー」と、メモやテキスト欄へ渡す「テキストとしてコピー」の2つの方法があります。テキスト形式をFilesなどへ貼ると、本文ではなく <code>text.txt</code> などのファイルが作られる場合があります。</p></article>
     </div>
 
@@ -203,6 +220,11 @@
     <p>iCloud同期を有効にすると、同期対象のデータはユーザーのApple Accountに紐づくプライベートCloudKitデータベースに保存されます。Stashはユーザー自身のプライベートiCloudを使用し、独自のStashサーバーへクリップボード内容を送信しません。</p>
     <p>ファイルやフォルダの本体、端末内のみ保存される本体はアップロードされません。別端末にはメタデータが表示されても、元のローカルファイルを利用できない場合があります。端末専用のロック解除情報やローカルのセキュリティスコープ付きアクセス情報も同期されません。</p>
     <p>同期設定は端末ごとに管理されます。Macの自動保存をオフにしても、そのMacでの自動保存が止まるだけで、iCloud同期が停止したり既存の同期項目が削除されたりすることはありません。</p>
+
+
+    <h2>一時書き出しとファイル名</h2>
+    <p>ペーストボードへ渡すために生成されたフォルダのZIPは一時ファイルです。Stashは最長10分保持し、期限切れの書き出しを削除します。元のフォルダは変更しません。</p>
+    <p>iOSでは、<code>.alac</code>拡張子のファイルをApple Lossless音声として扱い、互換性のため<code>.m4a</code>の名前で表示・ペーストします。Stashは音声データを再エンコードしません。</p>
 
     <h2>秘密スニペット</h2>
     <p>秘密スニペットは保存前に暗号化され、アプリの認証フローで保護されます。意図しない露出を減らすため、通常の一覧やプレビューカードには表示されません。この機能は専用のパスワードマネージャーの代替ではありません。</p>
