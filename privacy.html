@@ -93,7 +93,11 @@
     color: #dce4e4;
   }
   a { color: var(--accent); }
-  .lang-section { padding-top: 8px; }
+  .lang-section { display: none; padding-top: 8px; }
+  .lang-section.active { display: block; }
+  .language-switch { display: flex; gap: 6px; margin: 18px 0 26px; }
+  .language-switch button { border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: .85rem; padding: 7px 13px; }
+  .language-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
   @media (max-width: 680px) {
     .shell { padding: 16px 14px 48px; }
     .hero { grid-template-columns: 60px 1fr; gap: 15px; padding: 18px; }
@@ -114,6 +118,11 @@
     </div>
   </header>
 
+    <nav class="language-switch" aria-label="Language">
+      <button type="button" data-language-button="en" aria-pressed="true">English</button>
+      <button type="button" data-language-button="ja" aria-pressed="false">日本語</button>
+    </nav>
+  <section class="lang-section active" lang="en" data-language="en">
   <p class="lede">Stash keeps clipboard history and snippets available on the user's devices. This policy explains the difference between local storage, private iCloud synchronization, and file reference metadata.</p>
 
   <p class="section-label">Data handling</p>
@@ -160,9 +169,10 @@
   <h2>Contact</h2>
   <p>For privacy questions or support requests, please contact <a href="mailto:output@unwraps.net">output@unwraps.net</a>.</p>
 
-  <hr>
 
-  <section class="lang-section" lang="ja">
+  </section>
+
+  <section class="lang-section" lang="ja" data-language="ja">
     <p class="section-label">データの取り扱い</p>
     <h1>Stash プライバシーポリシー</h1>
     <p class="muted">最終更新日: 2026年8月24日</p>
@@ -212,5 +222,39 @@
     <p>プライバシーに関する質問やサポートの依頼は、<a href="mailto:output@unwraps.net">output@unwraps.net</a>までご連絡ください。</p>
   </section>
 </main>
+<script>
+(() => {
+  const sections = [...document.querySelectorAll("[data-language]")];
+  const buttons = [...document.querySelectorAll("[data-language-button]")];
+  const queryLanguage = new URLSearchParams(window.location.search).get("lang");
+  const savedLanguage = window.localStorage.getItem("stash-policy-language");
+  const browserLanguage = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
+  const initialLanguage = queryLanguage === "ja" || queryLanguage === "en"
+    ? queryLanguage
+    : savedLanguage === "ja" || savedLanguage === "en" ? savedLanguage : browserLanguage;
+
+  function setLanguage(language, updateUrl) {
+    sections.forEach(section => {
+      section.classList.toggle("active", section.dataset.language === language);
+    });
+    buttons.forEach(button => {
+      const selected = button.dataset.languageButton === language;
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    document.documentElement.lang = language;
+    window.localStorage.setItem("stash-policy-language", language);
+    if (updateUrl) {
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("lang", language);
+      window.history.replaceState(null, "", nextUrl.pathname + nextUrl.search + nextUrl.hash);
+    }
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => setLanguage(button.dataset.languageButton, true));
+  });
+  setLanguage(initialLanguage, false);
+})();
+</script>
 </body>
 </html>
