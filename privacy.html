@@ -5,100 +5,212 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stash Privacy Policy</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 840px; margin: 40px auto; padding: 0 20px; color: #1f2328; }
-  h1, h2, h3 { line-height: 1.25; }
-  h1 { margin-top: 0; }
-  h2 { margin-top: 2em; }
-  h3 { margin-top: 1.5em; }
-  hr { margin: 40px 0; border: 0; border-top: 1px solid #d0d7de; }
-  .muted { color: #57606a; }
-  .note { padding: 12px 16px; background: #f6f8fa; border-radius: 8px; }
-  li { margin: 0.35em 0; }
+  :root {
+    color-scheme: dark;
+    --bg: #090b0c;
+    --panel: #121617;
+    --panel-strong: #171c1e;
+    --line: #2a3235;
+    --line-soft: #202729;
+    --text: #eef2f2;
+    --muted: #9aa6a9;
+    --accent: #d9e2e3;
+    --accent-ink: #0b0e0f;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    line-height: 1.7;
+  }
+  .shell { max-width: 980px; margin: 0 auto; padding: 28px 22px 72px; }
+  .hero {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 22px;
+    align-items: center;
+    padding: 26px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(0,0,0,.28);
+  }
+  .logo {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    background: #f5f5f2;
+  }
+  .kicker {
+    margin: 0 0 5px;
+    color: var(--muted);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  h1, h2, h3 { line-height: 1.2; letter-spacing: .01em; }
+  h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); }
+  h2 { margin: 48px 0 16px; font-size: 1.55rem; }
+  h3 { margin: 0 0 8px; font-size: 1.02rem; }
+  p { margin: 12px 0; }
+  .muted { color: var(--muted); }
+  .lede { max-width: 720px; font-size: 1.05rem; color: #c7d0d1; }
+  .rule { height: 1px; margin: 48px 0; background: var(--line); border: 0; }
+  .section-label {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+  }
+  .card .eyebrow {
+    color: var(--muted);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .card p { color: #c7d0d1; }
+  .note {
+    margin: 18px 0;
+    padding: 15px 17px;
+    border-left: 3px solid var(--accent);
+    background: var(--panel-strong);
+    color: #dce4e4;
+  }
+  a { color: var(--accent); }
+  .lang-section { padding-top: 8px; }
+  @media (max-width: 680px) {
+    .shell { padding: 16px 14px 48px; }
+    .hero { grid-template-columns: 60px 1fr; gap: 15px; padding: 18px; }
+    .logo { width: 60px; height: 60px; }
+    .grid { grid-template-columns: 1fr; }
+    h2 { margin-top: 36px; }
+  }
 </style>
 </head>
 <body>
-<h1>Stash Privacy Policy</h1>
-<p class="muted">Last updated: August 24, 2026</p>
-<p>Stash is a clipboard history and snippet utility for iOS, iPadOS, and macOS. This Privacy Policy explains what Stash stores, what may be synchronized, and what remains on a device.</p>
+<main class="shell">
+  <header class="hero">
+    <img class="logo" src="Stash-icon.png" alt="Stash icon">
+    <div>
+      <p class="kicker">Clipboard history / iOS / iPadOS / macOS</p>
+      <h1>Stash Privacy Policy</h1>
+      <p class="muted">Last updated: August 24, 2026</p>
+    </div>
+  </header>
 
-<h2>Data Stored by Stash</h2>
-<p>Stash stores the clipboard content that the user chooses to keep, including history items, snippets, favorites, text, rich text, images, file references, folders, multiple-copy groups, and media metadata. Clipboard content is stored locally on the user's device by default.</p>
-<p>On macOS, the optional automatic clipboard saving switch is a per-device setting. When it is off, Stash ignores newly copied items for automatic history saving. Explicit actions such as saving a snippet or choosing a copy/save action remain user-controlled.</p>
+  <p class="lede">Stash keeps clipboard history and snippets available on the user's devices. This policy explains the difference between local storage, private iCloud synchronization, and file reference metadata.</p>
 
-<h2>What Is Stored</h2>
-<p>The exact storage behavior depends on the platform and the item type. Stash intentionally separates the following categories:</p>
-<h3>1. Original content stored in Stash</h3>
-<p>Some text, rich text, images, videos, audio, and imported file content are retained in the app's local storage according to the platform's size and type rules. When a stored body is eligible for iCloud sync, its supported payload may also be synchronized.</p>
-<h3>2. Original content stored locally but not synchronized</h3>
-<p>Some large or platform-specific bodies are kept only on the device where they were captured. They are not uploaded to CloudKit. The item can still be used on that device while its local data is available.</p>
-<h3>3. Reference metadata only</h3>
-<p>For many files, folders, packages, archives, media, fonts, office/iWork documents, code files, and other items, Stash keeps metadata rather than copying the original body. This can include a display name, extension, Uniform Type Identifier, source application or device, original file URL, and security-scoped access information when available. The original file or folder remains outside Stash.</p>
-<p>Whether an item is stored as content or metadata is decided per clipboard item. The same extension can be classified differently when the source provides text, an image, or a file reference.</p>
-<p class="note">The byte count shown in a preview is the stored body size for content saved in Stash. For metadata-only items, it is the size of the metadata record, not the size of the original file.</p>
+  <p class="section-label">Data handling</p>
+  <h2>What Stash stores</h2>
+  <p>Stash stores the clipboard content that the user chooses to keep, including history items, snippets, favorites, text, rich text, images, file references, folders, multiple-copy groups, and media metadata. Clipboard content is stored locally on the user's device by default.</p>
+  <p>On macOS, the optional automatic clipboard saving switch is a per-device setting. When it is off, newly copied items are ignored for automatic history saving on that Mac. Explicit actions such as saving a snippet or choosing a copy/save action remain user-controlled.</p>
 
-<h2>iCloud Sync</h2>
-<p>If iCloud sync is enabled, eligible data is stored in the user's private CloudKit database associated with their Apple Account. Stash uses the user's private iCloud account and does not send clipboard content to an independent Stash server.</p>
-<p>History items that contain only local file or folder access information do not upload the original file or folder body. Such an item may appear on another device as metadata, but the original local file may not be available there. Device-only unlock information and local security-scoped access are not synchronized.</p>
-<p>Sync settings are controlled per device. A Mac with automatic clipboard saving disabled does not automatically save new copies on that Mac; this does not turn off sync or delete existing synchronized items on another device.</p>
+  <h2>Three storage categories</h2>
+  <div class="grid">
+    <article class="card"><span class="eyebrow">01 / Body</span><h3>Original content stored in Stash</h3><p>Some text, rich text, images, videos, audio, and imported file content are retained in local app storage according to the platform's size and type rules. Eligible payloads may also sync through iCloud.</p></article>
+    <article class="card"><span class="eyebrow">02 / Local only</span><h3>Original content stored locally, not synchronized</h3><p>Some large or platform-specific bodies remain only on the device where they were captured or saved. They are not uploaded to CloudKit, but remain usable there while the local data is available.</p></article>
+    <article class="card"><span class="eyebrow">03 / Reference</span><h3>Reference metadata only</h3><p>For many files, folders, packages, archives, media, fonts, Office/iWork documents, and code files, Stash keeps metadata instead of copying the original body. This can include a display name, extension, type identifier, source app or device, original URL, and security-scoped access information when available.</p></article>
+    <article class="card"><span class="eyebrow">Per item</span><h3>Classification is not extension-only</h3><p>The storage category is decided per clipboard item. The same extension can be classified differently when the source provides text, image data, or a file reference.</p></article>
+  </div>
+  <p class="note">A byte count shown in a preview is the stored body size for content saved in Stash. For metadata-only items, it is the size of the metadata record, not the size of the original file.</p>
 
-<h2>Sensitive Snippets</h2>
-<p>Sensitive snippets are encrypted before being stored and are protected by the app's authentication flow. They are hidden from ordinary lists and preview cards to reduce accidental exposure. This feature is not a replacement for a dedicated password manager.</p>
-<p>Passwords, derived encryption keys, and device-only unlock information are not synchronized as ordinary clipboard data. The user is responsible for deciding what sensitive information to save in Stash.</p>
+  <h2>Platform-specific behavior</h2>
+  <div class="grid">
+    <article class="card"><span class="eyebrow">macOS</span><h3>File references stay tied to the source Mac</h3><p>Image files in supported formats up to 100 MB are stored as image data and may sync. Most non-image file histories, including PDF, SVG, archives, fonts, audio, video, Office/iWork documents, folders, packages, and code/text files, keep the original-location metadata and local access data instead of copying the file body into Stash. Rich text over 10 MB is kept locally while its plain text can remain syncable.</p></article>
+    <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>Accessible file bodies can be kept locally</h3><p>When iOS provides an accessible file URL or file representation, Stash can copy PDF, SVG, archives, fonts, audio, video, Office/iWork/OpenDocument documents, EPUB, code/text files, and other files into local Stash storage. These local file bodies are used for pasting on that device, but are not uploaded to other devices. Videos and audio remain local-only.</p></article>
+    <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>Folders and multiple files</h3><p>Folder references are kept locally with access information rather than copied folder contents. When a folder is pasted, Stash may create a temporary ZIP. Multiple copied files are stored locally when their file representations are accessible and restored as multiple file items when pasted.</p></article>
+    <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>File copy and text copy</h3><p>Text-readable files may offer two actions: copy as a file for Files and other file-capable apps, or copy as text for Notes and text fields. Pasting the text form into a file manager may create a file such as <code>text.txt</code> instead of inserting text inline.</p></article>
+  </div>
 
-<h2>Analytics and Tracking</h2>
-<p>Stash does not include analytics, advertising, telemetry, or third-party tracking code.</p>
+  <h2>iCloud Sync</h2>
+  <p>If iCloud sync is enabled, eligible data is stored in the user's private CloudKit database associated with their Apple Account. Stash uses the user's private iCloud account and does not send clipboard content to an independent Stash server.</p>
+  <p>File and folder bodies that are classified as local references or local-only bodies are not uploaded. Another device may show a metadata item, but the original local file may not be available there. Device-only unlock information and local security-scoped access are not synchronized.</p>
+  <p>Sync settings are controlled per device. Turning off macOS automatic clipboard saving affects only automatic saves on that Mac; it does not turn off iCloud sync or delete existing synchronized items.</p>
 
-<h2>Data Sharing</h2>
-<p>Stash does not sell user data and does not share clipboard data with third parties. Data is transmitted only when the user uses an operating-system sharing or pasteboard workflow, or when the user enables the app's iCloud synchronization.</p>
+  <h2>Sensitive Snippets</h2>
+  <p>Sensitive snippets are encrypted before being stored and protected by the app's authentication flow. They are hidden from ordinary lists and preview cards to reduce accidental exposure. This feature is not a replacement for a dedicated password manager.</p>
+  <p>Passwords, derived encryption keys, and device-only unlock information are not synchronized as ordinary clipboard data. The user is responsible for deciding what sensitive information to save in Stash.</p>
 
-<h2>User Control and Deletion</h2>
-<p>Users can delete history items, snippets, favorites, and stored data from within the app. Deleting a Stash item removes Stash's copy or metadata record and any supported synchronization record; it does not delete the original file or folder from the user's device or Finder.</p>
-<p>Temporary export files used to provide file paste are cleaned up according to the platform's temporary-file lifecycle. The original source remains under the control of the operating system or the source application.</p>
+  <h2>Analytics and Tracking</h2>
+  <p>Stash does not include analytics, advertising, telemetry, or third-party tracking code.</p>
 
-<h2>Contact</h2>
-<p>For privacy questions or support requests, please contact <a href="mailto:output@unwraps.net">output@unwraps.net</a>.</p>
+  <h2>Data Sharing</h2>
+  <p>Stash does not sell user data and does not share clipboard data with third parties. Data is transmitted only when the user uses an operating-system sharing or pasteboard workflow, or when the user enables iCloud synchronization.</p>
 
-<hr>
+  <h2>User Control and Deletion</h2>
+  <p>Users can delete history items, snippets, favorites, and stored data from within the app. Deleting a Stash item removes Stash's copy or metadata record and any supported synchronization record; it does not delete the original file or folder from the user's device or Finder.</p>
+  <p>Temporary export files used to provide file paste follow the platform's temporary-file lifecycle. The original source remains under the control of the operating system or source application.</p>
 
-<h1>Stash プライバシーポリシー</h1>
-<p class="muted">最終更新日: 2026年8月24日</p>
-<p>Stashは、iOS、iPadOS、macOS向けのクリップボード履歴・スニペット管理アプリです。このプライバシーポリシーでは、Stashが保存するデータ、同期されるデータ、端末内に留まるデータを説明します。</p>
+  <h2>Contact</h2>
+  <p>For privacy questions or support requests, please contact <a href="mailto:output@unwraps.net">output@unwraps.net</a>.</p>
 
-<h2>Stashが保存するデータ</h2>
-<p>Stashは、ユーザーが保存することを選択したクリップボード履歴、スニペット、お気に入り、テキスト、リッチテキスト、画像、ファイル参照、フォルダ、複数コピー、メディアのメタデータなどを扱います。クリップボードの内容は、標準ではユーザーの端末にローカル保存されます。</p>
-<p>macOSでは、自動保存スイッチは端末ごとの設定です。オフにすると、新しくコピーした項目は自動的な履歴保存の対象になりません。スニペット保存など、ユーザーが明示的に行う操作は引き続き利用できます。</p>
+  <hr>
 
-<h2>保存されるもの</h2>
-<p>保存方法は、プラットフォームと項目の種類によって異なります。Stashでは、次の3つを区別しています。</p>
-<h3>1. Stash内に本体が保存されるもの</h3>
-<p>一部のテキスト、リッチテキスト、画像、動画、音声、読み込んだファイル本体は、プラットフォームごとのサイズ・種類のルールに従ってアプリ内に保存されます。本体保存されたデータのうち同期対象になるものは、対応するペイロードがiCloudにも同期されます。</p>
-<h3>2. 本体は端末内に保存されるが、同期されないもの</h3>
-<p>大きなデータやプラットフォーム固有の本体データの一部は、取得した端末だけに保存されます。CloudKitにはアップロードされません。端末内のデータが利用可能な間は、その端末で使用できます。</p>
-<h3>3. 本体ではなく参照メタデータだけが保存されるもの</h3>
-<p>多くのファイル、フォルダ、パッケージ、アーカイブ、メディア、フォント、Office/iWork書類、コードファイルなどでは、元の本体をコピーせず、メタデータを保持します。表示名、拡張子、Uniform Type Identifier、コピー元アプリや端末、元ファイルURL、取得できる場合はセキュリティスコープ付きアクセス情報などが含まれます。元ファイルや元フォルダはStashの外部に残ります。</p>
-<p>本体保存かメタデータのみかは、クリップボード項目ごとに判定されます。同じ拡張子でも、コピー元がテキスト、画像、ファイル参照のどれを提供したかによって分類が変わる場合があります。</p>
-<p class="note">プレビューに表示されるバイト数は、Stash内に本体を保存している項目では保存された本体のサイズです。メタデータのみの項目では、元ファイルのサイズではなくメタデータ記録自体のサイズです。</p>
+  <section class="lang-section" lang="ja">
+    <p class="section-label">データの取り扱い</p>
+    <h1>Stash プライバシーポリシー</h1>
+    <p class="muted">最終更新日: 2026年8月24日</p>
+    <p class="lede">Stashは、ユーザーの端末上でクリップボード履歴とスニペットを利用できるようにします。このページでは、端末内保存、プライベートiCloud同期、ファイル参照メタデータの違いを説明します。</p>
 
-<h2>iCloud同期</h2>
-<p>iCloud同期を有効にすると、同期対象のデータはユーザーのApple Accountに紐づくプライベートCloudKitデータベースに保存されます。Stashはユーザー自身のプライベートiCloudを使用し、独自のStashサーバーへクリップボード内容を送信しません。</p>
-<p>ファイルやフォルダへのローカルアクセス情報だけを持つ履歴では、元ファイルや元フォルダの本体はアップロードされません。そのため、別端末にはメタデータが表示されても、元のローカルファイルをその端末で利用できない場合があります。端末専用のロック解除情報やローカルのセキュリティスコープ付きアクセス情報も同期されません。</p>
-<p>同期設定は端末ごとに管理されます。あるMacで自動保存をオフにしても、そのMacで新しくコピーした項目の自動保存が止まるだけで、別端末にある既存の同期項目がオフになったり削除されたりすることはありません。</p>
+    <h2>Stashが保存するデータ</h2>
+    <p>Stashは、ユーザーが保存することを選択したクリップボード履歴、スニペット、お気に入り、テキスト、リッチテキスト、画像、ファイル参照、フォルダ、複数コピー、メディアのメタデータなどを扱います。クリップボードの内容は、標準ではユーザーの端末にローカル保存されます。</p>
+    <p>macOSでは、自動保存スイッチは端末ごとの設定です。オフにすると、そのMacで新しくコピーした項目は自動的な履歴保存の対象になりません。スニペット保存など、ユーザーが明示的に行う操作は引き続き利用できます。</p>
 
-<h2>秘密スニペット</h2>
-<p>秘密スニペットは保存前に暗号化され、アプリの認証フローで保護されます。意図しない露出を減らすため、通常の一覧やプレビューカードには表示されません。この機能は専用のパスワードマネージャーの代替ではありません。</p>
-<p>パスワード、暗号化キーを導出する情報、端末専用のロック解除情報は、通常のクリップボードデータとして同期されません。Stashにどのような機密情報を保存するかは、ユーザー自身の判断と責任で行ってください。</p>
+    <h2>3つの保存分類</h2>
+    <div class="grid">
+      <article class="card"><span class="eyebrow">01 / 本体</span><h3>Stash内に本体が保存されるもの</h3><p>一部のテキスト、リッチテキスト、画像、動画、音声、読み込んだファイル本体は、OSごとのサイズ・種類のルールに従ってアプリ内に保存されます。同期対象になるペイロードはiCloudにも同期されます。</p></article>
+      <article class="card"><span class="eyebrow">02 / 端末内のみ</span><h3>本体は端末内に保存されるが、同期されないもの</h3><p>大きなデータやプラットフォーム固有の本体データの一部は、取得・保存した端末だけに残ります。CloudKitにはアップロードされません。</p></article>
+      <article class="card"><span class="eyebrow">03 / 参照</span><h3>本体ではなく参照メタデータだけが保存されるもの</h3><p>多くのファイル、フォルダ、パッケージ、アーカイブ、メディア、フォント、Office/iWork書類、コードファイルなどでは、元の本体をコピーせず、表示名、拡張子、種類、コピー元アプリや端末、元URL、取得できる場合のセキュリティスコープ付きアクセス情報を保持します。</p></article>
+      <article class="card"><span class="eyebrow">項目ごと</span><h3>拡張子だけでは決まりません</h3><p>本体保存かメタデータのみかは、履歴項目ごとに判定されます。同じ拡張子でも、コピー元がテキスト、画像、ファイル参照のどれを提供したかで分類が変わる場合があります。</p></article>
+    </div>
+    <p class="note">プレビューに表示されるバイト数は、Stash内に本体を保存している項目では保存された本体のサイズです。メタデータのみの項目では、元ファイルのサイズではなくメタデータ記録自体のサイズです。</p>
 
-<h2>解析・トラッキング</h2>
-<p>Stashには、解析、広告、テレメトリ、第三者トラッキングのコードは含まれていません。</p>
+    <h2>OSごとの違い</h2>
+    <div class="grid">
+      <article class="card"><span class="eyebrow">macOS</span><h3>ファイル参照はコピー元Macに紐づきます</h3><p>対応形式で100MB以下の画像は画像データとして保存され、同期対象になる場合があります。PDF、SVG、アーカイブ、フォント、音声、動画、Office/iWork書類、フォルダ、パッケージ、コード・テキストファイルなど、多くのファイル履歴は本体をStashへコピーせず、元の場所へのメタデータとローカルアクセス情報を保持します。10MBを超えるリッチテキストは端末内に保持し、プレーンテキストは同期できる場合があります。</p></article>
+      <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>アクセスできるファイル本体を端末内に保持できます</h3><p>iOSがアクセス可能なファイルURLまたはファイル表現を提供する場合、PDF、SVG、アーカイブ、フォント、音声、動画、Office/iWork/OpenDocument書類、EPUB、コード・テキストファイルなどをStashの端末内ストレージへコピーできます。これらはその端末でのペーストに使われますが、他端末へはアップロードされません。動画と音声は端末内のみです。</p></article>
+      <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>フォルダと複数ファイル</h3><p>フォルダは内容をコピーせず、アクセス情報を持つローカル参照として保持します。フォルダをペーストすると、一時ZIPを生成する場合があります。複数ファイルはアクセス可能なファイル表現がある場合に端末内へ保存され、ペースト時に複数のファイル項目として復元されます。</p></article>
+      <article class="card"><span class="eyebrow">iOS / iPadOS</span><h3>ファイルとしてコピー・テキストとしてコピー</h3><p>文字として読めるファイルには、Filesなどへ渡す「ファイルとしてコピー」と、メモやテキスト欄へ渡す「テキストとしてコピー」の2つの方法があります。テキスト形式をFilesなどへ貼ると、本文ではなく <code>text.txt</code> などのファイルが作られる場合があります。</p></article>
+    </div>
 
-<h2>データの共有</h2>
-<p>Stashはユーザーデータを販売せず、クリップボードデータを第三者と共有しません。データが外部へ渡るのは、ユーザーがOSの共有・ペーストボード機能を使った場合、またはiCloud同期を有効にした場合です。</p>
+    <h2>iCloud同期</h2>
+    <p>iCloud同期を有効にすると、同期対象のデータはユーザーのApple Accountに紐づくプライベートCloudKitデータベースに保存されます。Stashはユーザー自身のプライベートiCloudを使用し、独自のStashサーバーへクリップボード内容を送信しません。</p>
+    <p>ファイルやフォルダの本体、端末内のみ保存される本体はアップロードされません。別端末にはメタデータが表示されても、元のローカルファイルを利用できない場合があります。端末専用のロック解除情報やローカルのセキュリティスコープ付きアクセス情報も同期されません。</p>
+    <p>同期設定は端末ごとに管理されます。Macの自動保存をオフにしても、そのMacでの自動保存が止まるだけで、iCloud同期が停止したり既存の同期項目が削除されたりすることはありません。</p>
 
-<h2>ユーザーによる管理と削除</h2>
-<p>ユーザーは、アプリ内から履歴、スニペット、お気に入り、保存データを削除できます。Stashの項目を削除すると、Stash内の本体またはメタデータ記録と、対応する同期記録が削除されますが、端末上またはFinder上の元ファイルや元フォルダは削除されません。</p>
-<p>ファイルとしてペーストするために使われる一時書き出しファイルは、プラットフォームの一時ファイルのライフサイクルに従って整理されます。元データは、OSまたはコピー元アプリの管理下に残ります。</p>
+    <h2>秘密スニペット</h2>
+    <p>秘密スニペットは保存前に暗号化され、アプリの認証フローで保護されます。意図しない露出を減らすため、通常の一覧やプレビューカードには表示されません。この機能は専用のパスワードマネージャーの代替ではありません。</p>
+    <p>パスワード、暗号化キーを導出する情報、端末専用のロック解除情報は、通常のクリップボードデータとして同期されません。Stashにどのような機密情報を保存するかは、ユーザー自身の判断と責任で行ってください。</p>
 
-<h2>お問い合わせ</h2>
-<p>プライバシーに関する質問やサポートの依頼は、<a href="mailto:output@unwraps.net">output@unwraps.net</a>までご連絡ください。</p>
+    <h2>解析・トラッキング</h2>
+    <p>Stashには、解析、広告、テレメトリ、第三者トラッキングのコードは含まれていません。</p>
+
+    <h2>データの共有</h2>
+    <p>Stashはユーザーデータを販売せず、クリップボードデータを第三者と共有しません。外部へ渡るのは、ユーザーがOSの共有・ペーストボード機能を使った場合、またはiCloud同期を有効にした場合です。</p>
+
+    <h2>ユーザーによる管理と削除</h2>
+    <p>ユーザーは、アプリ内から履歴、スニペット、お気に入り、保存データを削除できます。Stashの項目を削除すると、Stash内の本体またはメタデータ記録と対応する同期記録が削除されますが、端末上やFinder上の元ファイル・元フォルダは削除されません。</p>
+    <p>ファイルとしてペーストするための一時書き出しファイルは、OSの一時ファイルのライフサイクルに従って整理されます。元データはOSまたはコピー元アプリの管理下に残ります。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>プライバシーに関する質問やサポートの依頼は、<a href="mailto:output@unwraps.net">output@unwraps.net</a>までご連絡ください。</p>
+  </section>
+</main>
 </body>
 </html>
