@@ -5,94 +5,268 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stash Support</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
-      max-width: 840px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #1f2328;
-    }
-    h1, h2 { line-height: 1.25; }
-    hr { margin: 40px 0; border: 0; border-top: 1px solid #d0d7de; }
-    .muted { color: #57606a; }
+
+  :root {
+    color-scheme: dark;
+    --bg: #090b0c;
+    --panel: #121617;
+    --panel-strong: #171c1e;
+    --line: #2a3235;
+    --line-soft: #202729;
+    --text: #eef2f2;
+    --muted: #9aa6a9;
+    --accent: #d9e2e3;
+    --accent-ink: #0b0e0f;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    line-height: 1.7;
+  }
+  .shell { max-width: 980px; margin: 0 auto; padding: 28px 22px 72px; }
+  .hero {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 22px;
+    align-items: center;
+    padding: 26px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(0,0,0,.28);
+  }
+  .logo {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    background: #f5f5f2;
+  }
+  .kicker {
+    margin: 0 0 5px;
+    color: var(--muted);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  h1, h2, h3 { line-height: 1.2; letter-spacing: .01em; }
+  h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); }
+  h2 { margin: 48px 0 16px; font-size: 1.55rem; }
+  h3 { margin: 0 0 8px; font-size: 1.02rem; }
+  p { margin: 12px 0; }
+  .muted { color: var(--muted); }
+  .lede { max-width: 720px; font-size: 1.05rem; color: #c7d0d1; }
+  .rule { height: 1px; margin: 48px 0; background: var(--line); border: 0; }
+  .section-label {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+  }
+  .card .eyebrow {
+    color: var(--muted);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .card p { color: #c7d0d1; }
+  .note {
+    margin: 18px 0;
+    padding: 15px 17px;
+    border-left: 3px solid var(--accent);
+    background: var(--panel-strong);
+    color: #dce4e4;
+  }
+  a { color: var(--accent); }
+  .lang-section { display: none; padding-top: 8px; }
+  .lang-section.active { display: block; }
+  .lang-copy { display: none; }
+  .lang-copy.active { display: block; }
+  .language-switch { display: flex; gap: 6px; margin: 18px 0 26px; }
+  .language-switch button { border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: .85rem; padding: 7px 13px; }
+  .language-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  @media (max-width: 680px) {
+    .shell { padding: 16px 14px 48px; }
+    .hero { grid-template-columns: 60px 1fr; gap: 15px; padding: 18px; }
+    .logo { width: 60px; height: 60px; }
+    .grid { grid-template-columns: 1fr; }
+    h2 { margin-top: 36px; }
+  }
+
+
+  .support-list { margin: 12px 0 0; padding-left: 22px; }
+  .support-list li { margin: 6px 0; }
+  .callout { margin-top: 18px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel-strong); }
+  .callout a, .card a { color: var(--text); }
+
   </style>
 </head>
 <body>
-  <h1>Stash Support</h1>
-  <p class="muted">Support for Stash on iOS, iPadOS, and macOS</p>
+  <main class="shell">
+    <header class="hero">
+      <img class="logo" src="Stash-icon.png" alt="Stash icon">
+      <div>
+        <p class="kicker lang-copy active" data-language-copy="en">Support / iOS / iPadOS / macOS</p>
+        <p class="kicker lang-copy" data-language-copy="ja">サポート / iOS / iPadOS / macOS</p>
+        <h1 class="lang-copy active" data-language-copy="en">Stash Support</h1>
+        <h1 class="lang-copy" data-language-copy="ja">Stash サポート</h1>
+        <p class="muted lang-copy active" data-language-copy="en">Help, troubleshooting, and contact</p>
+        <p class="muted lang-copy" data-language-copy="ja">ヘルプ、トラブルシューティング、お問い合わせ</p>
+      </div>
+    </header>
 
-  <p>
-    If you need help with Stash, please contact us by email.
-  </p>
+    <nav class="language-switch" aria-label="Language">
+      <button type="button" data-language-button="en" aria-pressed="true">English</button>
+      <button type="button" data-language-button="ja" aria-pressed="false">日本語</button>
+    </nav>
 
-  <h2>Contact</h2>
-  <p>
-    Email:
-    <a href="mailto:output@unwraps.net">output@unwraps.net</a>
-  </p>
+    <section class="lang-section active" lang="en" data-language="en">
+      <p class="section-label">Getting help</p>
+      <p class="lede">Stash keeps clipboard history and snippets available across iOS, iPadOS, and macOS. If something does not work as expected, the details below help us investigate it quickly.</p>
 
-  <h2>When Contacting Support</h2>
-  <p>
-    Please include the following information when possible:
-  </p>
-  <ul>
-    <li>Your device model</li>
-    <li>Your OS version</li>
-    <li>The Stash app version</li>
-    <li>A short description of the issue</li>
-    <li>Steps to reproduce the issue, if available</li>
-  </ul>
+      <h2>Contact</h2>
+      <p>For support, email <a href="mailto:output@unwraps.net">output@unwraps.net</a>.</p>
 
-  <h2>Privacy</h2>
-  <p>
-    Please do not include passwords, secret snippets, private clipboard contents,
-    or other sensitive information in support emails.
-  </p>
+      <h2>What to include</h2>
+      <p>When possible, include:</p>
+      <ul class="support-list">
+        <li>Device model and OS version</li>
+        <li>Stash version and platform: iOS, iPadOS, or macOS</li>
+        <li>The source app and the app where the issue occurs</li>
+        <li>A short description and steps to reproduce the issue</li>
+        <li>A screenshot or a relevant error message, with private content removed</li>
+      </ul>
 
-  <h2>Privacy Policy</h2>
-  <p>
-    You can read the Stash Privacy Policy here:
-    <a href="privacy.html">Privacy Policy</a>
-  </p>
+      <h2>Common topics</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Clipboard history</h3>
+          <p>On macOS, automatic saving is controlled per Mac in Stash settings. On iOS and iPadOS, Stash reads the pasteboard when you open the app or perform an explicit save or paste action.</p>
+        </article>
+        <article class="card">
+          <h3>iCloud sync</h3>
+          <p>Sync uses your private iCloud account. Confirm that the devices use the same Apple Account, iCloud is available, and Stash has had time to complete a sync.</p>
+        </article>
+        <article class="card">
+          <h3>Files and paste</h3>
+          <p>Some file histories keep the original file body, while others keep reference metadata. The receiving app can also determine whether a file or text paste is accepted.</p>
+        </article>
+        <article class="card">
+          <h3>Keyboard extension</h3>
+          <p>For the iOS and iPadOS keyboard, confirm that Stash is enabled under Settings &gt; General &gt; Keyboard &gt; Keyboards. Some paste actions may also require the system paste permission.</p>
+        </article>
+      </div>
 
-  <hr>
+      <h2>Privacy when contacting support</h2>
+      <div class="callout">
+        <p>Do not send passwords, secret snippets, private clipboard contents, file contents, or other sensitive information unless we specifically ask for a safe, redacted example.</p>
+      </div>
 
-  <h1>Stash サポート</h1>
-  <p class="muted">iOS、iPadOS、macOS版Stashのサポート</p>
+      <h2>Privacy Policy</h2>
+      <p>Read the <a href="privacy.html">Stash Privacy Policy</a> for details about local storage, iCloud synchronization, file metadata, and temporary exports.</p>
+    </section>
 
-  <p>
-    Stashについてサポートが必要な場合は、メールでお問い合わせください。
-  </p>
+    <section class="lang-section" lang="ja" data-language="ja">
+      <p class="section-label">サポートについて</p>
+      <p class="lede">Stashは、iOS、iPadOS、macOSでクリップボード履歴とスニペットを利用できるようにします。問題が発生した場合は、以下の情報を添えてご連絡いただくと、確認をスムーズに進められます。</p>
 
-  <h2>お問い合わせ</h2>
-  <p>
-    メール:
-    <a href="mailto:output@unwraps.net">output@unwraps.net</a>
-  </p>
+      <h2>お問い合わせ</h2>
+      <p>サポートへのお問い合わせは、<a href="mailto:output@unwraps.net">output@unwraps.net</a> までメールでお送りください。</p>
 
-  <h2>お問い合わせ時に含めてほしい情報</h2>
-  <p>
-    可能であれば、以下の情報を添えてご連絡ください。
-  </p>
-  <ul>
-    <li>使用している端末</li>
-    <li>OSのバージョン</li>
-    <li>Stashのアプリバージョン</li>
-    <li>問題の簡単な説明</li>
-    <li>再現手順がある場合はその手順</li>
-  </ul>
+      <h2>お問い合わせ時に含めてほしい情報</h2>
+      <p>可能な範囲で、以下をお知らせください。</p>
+      <ul class="support-list">
+        <li>端末のモデルとOSのバージョン</li>
+        <li>Stashのバージョンとプラットフォーム（iOS、iPadOS、macOS）</li>
+        <li>コピー元のアプリと問題が発生するアプリ</li>
+        <li>問題の概要と再現手順</li>
+        <li>個人情報を隠したスクリーンショットやエラーメッセージ</li>
+      </ul>
 
-  <h2>プライバシー</h2>
-  <p>
-    サポートへのお問い合わせには、パスワード、秘密スニペット、個人的なクリップボード内容、
-    その他の機密情報を含めないでください。
-  </p>
+      <h2>よくある項目</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>クリップボード履歴</h3>
+          <p>macOSでは、Stash設定の自動保存をMacごとに設定できます。iOSとiPadOSでは、Stashを開いた時、または明示的な保存・ペースト操作を行った時にペーストボードを読み取ります。</p>
+        </article>
+        <article class="card">
+          <h3>iCloud同期</h3>
+          <p>同期にはプライベートなiCloudアカウントを使用します。端末が同じApple Accountを使用していること、iCloudが利用できること、同期が完了するまで時間を置くことを確認してください。</p>
+        </article>
+        <article class="card">
+          <h3>ファイルとペースト</h3>
+          <p>ファイル履歴には、本体を保持するものと参照メタデータだけを保持するものがあります。また、ペースト先のアプリによってファイルやテキストを受け取れるかどうかが異なります。</p>
+        </article>
+        <article class="card">
+          <h3>キーボード拡張</h3>
+          <p>iOSとiPadOSのキーボードでは、「設定」&gt;「一般」&gt;「キーボード」&gt;「キーボード」でStashが有効になっていることを確認してください。ペースト操作にはシステムのペースト許可が必要な場合もあります。</p>
+        </article>
+      </div>
 
-  <h2>プライバシーポリシー</h2>
-  <p>
-    Stashのプライバシーポリシーはこちらから確認できます。
-    <a href="privacy.html">プライバシーポリシー</a>
-  </p>
+      <h2>お問い合わせ時のプライバシー</h2>
+      <div class="callout">
+        <p>パスワード、秘密スニペット、個人的なクリップボード内容、ファイルの中身、その他の機密情報は、明示的に安全な加工済みサンプルをお願いした場合を除き送信しないでください。</p>
+      </div>
+
+      <h2>プライバシーポリシー</h2>
+      <p>端末内保存、iCloud同期、ファイルメタデータ、一時書き出しについては、<a href="privacy.html">Stashプライバシーポリシー</a>をご確認ください。</p>
+    </section>
+  </main>
+  <script>
+
+(() => {
+  const sections = [...document.querySelectorAll("[data-language]")];
+  const buttons = [...document.querySelectorAll("[data-language-button]")];
+  const languageCopies = [...document.querySelectorAll("[data-language-copy]")];
+  const queryLanguage = new URLSearchParams(window.location.search).get("lang");
+  const savedLanguage = window.localStorage.getItem("stash-policy-language");
+  const browserLanguage = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
+  const initialLanguage = queryLanguage === "ja" || queryLanguage === "en"
+    ? queryLanguage
+    : savedLanguage === "ja" || savedLanguage === "en" ? savedLanguage : browserLanguage;
+
+  function setLanguage(language, updateUrl) {
+    sections.forEach(section => {
+      section.classList.toggle("active", section.dataset.language === language);
+    });
+    buttons.forEach(button => {
+      const selected = button.dataset.languageButton === language;
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    languageCopies.forEach(copy => {
+      copy.classList.toggle("active", copy.dataset.languageCopy === language);
+    });
+    document.documentElement.lang = language;
+    window.localStorage.setItem("stash-policy-language", language);
+    if (updateUrl) {
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("lang", language);
+      window.history.replaceState(null, "", nextUrl.pathname + nextUrl.search + nextUrl.hash);
+    }
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => setLanguage(button.dataset.languageButton, true));
+  });
+  setLanguage(initialLanguage, false);
+})();
+
+  </script>
 </body>
 </html>
