@@ -95,6 +95,8 @@
   a { color: var(--accent); }
   .lang-section { display: none; padding-top: 8px; }
   .lang-section.active { display: block; }
+  .lang-copy { display: none; }
+  .lang-copy.active { display: block; }
   .language-switch { display: flex; gap: 6px; margin: 18px 0 26px; }
   .language-switch button { border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: .85rem; padding: 7px 13px; }
   .language-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
@@ -112,9 +114,12 @@
   <header class="hero">
     <img class="logo" src="Stash-icon.png" alt="Stash icon">
     <div>
-      <p class="kicker">Clipboard history / iOS / iPadOS / macOS</p>
-      <h1>Stash Privacy Policy</h1>
-      <p class="muted">Last updated: August 24, 2026</p>
+      <p class="kicker lang-copy active" data-language-copy="en">Clipboard history / iOS / iPadOS / macOS</p>
+      <p class="kicker lang-copy" data-language-copy="ja">クリップボード履歴 / iOS / iPadOS / macOS</p>
+      <h1 class="lang-copy active" data-language-copy="en">Stash Privacy Policy</h1>
+      <h1 class="lang-copy" data-language-copy="ja">Stash プライバシーポリシー</h1>
+      <p class="muted lang-copy active" data-language-copy="en">Last updated: August 24, 2026</p>
+      <p class="muted lang-copy" data-language-copy="ja">最終更新日: 2026年8月24日</p>
     </div>
   </header>
 
@@ -248,6 +253,7 @@
 (() => {
   const sections = [...document.querySelectorAll("[data-language]")];
   const buttons = [...document.querySelectorAll("[data-language-button]")];
+  const languageCopies = [...document.querySelectorAll("[data-language-copy]")];
   const queryLanguage = new URLSearchParams(window.location.search).get("lang");
   const savedLanguage = window.localStorage.getItem("stash-policy-language");
   const browserLanguage = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
@@ -262,6 +268,9 @@
     buttons.forEach(button => {
       const selected = button.dataset.languageButton === language;
       button.setAttribute("aria-pressed", String(selected));
+    });
+    languageCopies.forEach(copy => {
+      copy.classList.toggle("active", copy.dataset.languageCopy === language);
     });
     document.documentElement.lang = language;
     window.localStorage.setItem("stash-policy-language", language);
