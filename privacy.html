@@ -118,8 +118,8 @@
       <p class="kicker lang-copy" data-language-copy="ja">クリップボード履歴 / iOS / iPadOS / macOS</p>
       <h1 class="lang-copy active" data-language-copy="en">Stash Privacy Policy</h1>
       <h1 class="lang-copy" data-language-copy="ja">Stash プライバシーポリシー</h1>
-      <p class="muted lang-copy active" data-language-copy="en">Last updated: August 24, 2026</p>
-      <p class="muted lang-copy" data-language-copy="ja">最終更新日: 2026年8月24日</p>
+      <p class="muted lang-copy active" data-language-copy="en">Last updated: September 1, 2026</p>
+      <p class="muted lang-copy" data-language-copy="ja">最終更新日: 2026年9月1日</p>
     </div>
   </header>
 
@@ -166,6 +166,9 @@
   <h2>Temporary exports and file naming</h2>
   <p>Folder ZIP files generated for a pasteboard export are temporary. Stash keeps them for up to 10 minutes and removes expired exports; the original folder is not changed.</p>
   <p>On iOS, files with the <code>.alac</code> extension are treated as Apple Lossless audio and are shown and pasted with a <code>.m4a</code> name for compatibility. Stash does not re-encode the audio data.</p>
+
+  <h2>Image format compatibility</h2>
+  <p>When a destination app does not support the original image format, iOS or that app may convert the image to another format, such as PNG or JPEG. Stash provides the saved image data and file representation whenever possible, but the final format is controlled by the destination app. Conversion may remove animation, transparency, or other format-specific properties.</p>
 
   <h2>Sensitive Snippets</h2>
   <p>Sensitive snippets are encrypted before being stored and protected by the app's authentication flow. They are hidden from ordinary lists and preview cards to reduce accidental exposure. This feature is not a replacement for a dedicated password manager.</p>
@@ -227,6 +230,9 @@
     <h2>一時書き出しとファイル名</h2>
     <p>ペーストボードへ渡すために生成されたフォルダのZIPは一時ファイルです。Stashは最長10分保持し、期限切れの書き出しを削除します。元のフォルダは変更しません。</p>
     <p>iOSでは、<code>.alac</code>拡張子のファイルをApple Lossless音声として扱い、互換性のため<code>.m4a</code>の名前で表示・ペーストします。Stashは音声データを再エンコードしません。</p>
+
+    <h2>画像形式の互換性</h2>
+    <p>貼り付け先アプリが元の画像形式に対応していない場合、iOSまたは貼り付け先アプリがPNGやJPEGなど別の画像形式へ変換することがあります。Stashは可能な限り保存した画像データとファイル表現を渡しますが、最終的な形式は貼り付け先アプリの仕様で決まります。変換により、アニメーション、透明度など形式固有の情報が失われる場合があります。</p>
 
     <h2>秘密スニペット</h2>
     <p>秘密スニペットは保存前に暗号化され、アプリの認証フローで保護されます。意図しない露出を減らすため、通常の一覧やプレビューカードには表示されません。この機能は専用のパスワードマネージャーの代替ではありません。</p>
