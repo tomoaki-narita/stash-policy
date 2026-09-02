@@ -266,7 +266,7 @@ a {
           </article>
         </div>
         <h2>iOS Stash Keyboard</h2>
-        <p>When the iOS keyboard is shown, Stash refreshes the keyboard list order. Snippets are included separately from the history limit. Up to 120 history items, including favorites, are included according to their sort order. Older history items remain available on the home screen. This display limit does not delete or unsync those items.</p>
+        <p>When the home screen refreshes its history, Stash saves a keyboard snapshot using that current order. The iOS Stash Keyboard reads the saved snapshot when it opens; it does not fetch or re-sort history on every keyboard presentation. Snippets are included separately without this history limit. Up to 120 history items, including favorites, are included in the keyboard list according to their sort order. Older history items remain available on the home screen. This display limit does not delete or unsync those items.</p>
         <h2>History limit and device behavior</h2>
         <p>The history-limit setting is synchronized between devices using the same Apple Account. Automatic trimming caused by that limit is performed separately on each device because local-only items and local history can differ. Automatic trimming does not delete the corresponding shared history from CloudKit or other devices, and increasing the limit does not automatically restore items trimmed on that device. If another device uses a shared history item that was trimmed on this device, its newer last-used date can make it reappear on this device and move to the top of the list. If the limit is already full, another old normal history item may be trimmed instead. Favorites are not included in the normal history limit.</p>
         <h2>iCloud Sync</h2>
@@ -351,7 +351,7 @@ a {
           </article>
         </div>
         <h2>iOS Stashキーボード</h2>
-        <p>iOSのStashキーボードを表示すると、キーボード一覧の履歴の並び順が更新されます。スニペットは履歴上限とは別に表示されます。履歴はお気に入りを含めて、並び順の上位120件まで表示されます。120件より後の履歴もStash本体のホーム画面では引き続き利用できます。この表示上限によって項目が削除されたり、同期されなくなったりすることはありません。</p>
+        <p>ホーム画面の履歴が更新されると、Stashはその時点の並び順でキーボード用スナップショットを保存します。iOSのStashキーボードは表示時に保存済みスナップショットを読み込み、キーボードを表示するたびに履歴を再取得・再ソートすることはありません。スニペットは履歴上限とは別に表示されます。履歴はお気に入りを含めて、並び順の上位120件までキーボード一覧に表示されます。120件より後の履歴もStash本体のホーム画面では引き続き利用できます。この表示上限によって項目が削除されたり、同期されなくなったりすることはありません。</p>
         <h2>履歴上限と端末ごとの挙動</h2>
         <p>同じApple Accountを使用する端末間では、履歴上限の設定値が同期されます。上限による自動削除は、ローカル専用項目や端末内の履歴が異なるため、端末ごとに個別に行われます。自動削除では、CloudKitや他端末の対応する共有履歴は削除されず、上限を増やしてもその端末で自動削除された項目は自動復元されません。別端末で、この端末で自動削除された共有履歴が使用されると、使用日時の更新によってこの端末に再表示され、一覧の先頭に戻る場合があります。上限に達している場合は、代わりに別の古い通常履歴が自動削除されることがあります。お気に入りは通常履歴の上限に含まれません。</p>
         <h2>iCloud同期</h2>
